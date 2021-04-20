@@ -1,10 +1,33 @@
-<h2><%= @list.name %></h2>
+<div class="banner" id="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key, crop: :fill %>); background-size: cover; height: 400px">
+  <div class="container">
+    <h2>My list: <%= @list.name %></h2>
+  </div>
+</div>
 
-<ul>
+<div class="row m-3">
 <% @list.bookmarks.each do |bm| %>
-  <li><%= bm.movie.title %> | <%= bm.comment %> <%= link_to "delete", bookmark_path(bm), method: :delete, data: { confirm: "Are you sure?" } %></li>
-  <% end %>
-</ul>
+    <div class="col-lg-3 col-sm-6">
+      <div class="card-list" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)),  url('<%= bm.movie.poster_url %>'); background-size: cover">
+                  <%= link_to bookmark_path(bm), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <p style="text-align:right; color:#fff"><i class="fas fa-trash"></i></p>
+                  <% end %>
+        <div class="list-name-link">
+        <div>
+          <h5><%= bm.movie.title %></h5>
+          <p><%= bm.comment %></p>
+        </div>
 
-<%= link_to "add movie",  new_list_bookmark_path(@list), class:"btn btn-primary" %>
-<%= link_to "all lists",  lists_path, class:"btn btn-primary" %>
+        </div> 
+      </div>
+    </div>
+  <% end %>
+  <div class="col-lg-3 col-sm-6">
+    <%= link_to new_list_bookmark_path(@list) do %>
+      <div class="card-list" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)),  url(https://images.unsplash.com/photo-1534551767192-78b8dd45b51b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80); background-size: cover">  
+        <div class="list-add">
+          <h5 class="add-button">Add a Movie</h5>
+        </div>
+      </div> 
+    <% end %>
+  </div>
+</div>
