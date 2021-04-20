@@ -1,1 +1,19 @@
-// Specific CSS for your home-page
+#hero {
+  padding: 60px 28px;
+  color: white;
+  margin-bottom: 12px
+}
+
+.card-list {
+  padding: 16px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: white;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  a {
+    color: white;
+  }
+}
